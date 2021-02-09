@@ -17,8 +17,7 @@ def var_to_dict():
         if a[1] in musiciens:
             list = musiciens[a[1]]
         list.append(a[0])
-        musiciens[a[1]] = list
-     
+        musiciens[a[1]] = list     
     for annee, musicien in musiciens.items():
         print(annee, ":", end = ' ')
         for m in musicien:
