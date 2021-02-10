@@ -1,0 +1,14 @@
+-A {name}! -B {firstname}! {toto}"</p>
+-A {name}! -B }firstname{!"</p>
+	
+<p>"-Who are you?
+-A {name}{firstname}!
+-A {name}!
+-B {firstname}!"</p>
+-B {toto}!"</p>
+
+<p>"-Who are you?
+-A {name}! -B {firstname}!"</p>
+
+<p>"-Who are you?
+-A {name}! -B }firstname-{name}!"</p>

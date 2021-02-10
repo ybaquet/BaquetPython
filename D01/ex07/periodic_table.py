@@ -32,15 +32,12 @@ def read_file():
             start = end + len(", number:")
             end = len(element) - 1
             electron = element[start: end]
-#            if old >= position:
-#                print_start_line(out, old)
             if position - old > 1:
                 out.write("\t\t\t<td colspan='"+ str(position - old - 1) + "' class=\"tr_void\"></td>\n")
             elif old >= position:
                 if 998 != old:
                     out.write("\t\t</tr>\n")
                 out.write("\t\t<tr>\n")
-#            print_intermediate(out, old,position);
             out.write("\t\t\t<td class=\"tr_full\">\n")
             out.write("\t\t\t\t<h4>" + name + "</h4>\n")
             out.write("\t\t\t\t<ul>\n")
@@ -50,13 +47,11 @@ def read_file():
             out.write("\t\t\t\t</ul>\n")
             out.write("\t\t\t</td>\n")
             old = position;
-    f.closed
     out.write("\t\t</tr>\n")
     out.write("\t</table>\n")
     out.write("</body>\n")
     out.write("</html>\n")
-    out.closed
+    out.close()
        
 if __name__ == '__main__':
     read_file()
-#    read_file()
