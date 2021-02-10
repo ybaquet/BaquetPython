@@ -1,10 +1,11 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
+# -*-coding:utf-8 -*-
+
 
 
 class Text(str):
     """
     A Text class to represent a text you could use with your HTML elements.
-
     Because directly using str class was too mainstream.
     """
 
@@ -12,22 +13,34 @@ class Text(str):
         """
         Do you really need a comment to understand this method?..
         """
-        return super().__str__().replace('\n', '\n<br />\n')
-
+        new = super().__str__().replace('>', '&gt;').replace('<', '&lt;')
+        if new == '"':
+            new = new.replace('"', '&quot;')
+        return new.replace('\n', '\n<br />\n')
 
 class Elem:
     """
     Elem will permit us to represent our HTML elements.
     """
-    [...]
+    class ValidationError(Exception):
+        def __init__(self, msg= "Invalid type"):
+            Exception.__init__(self, msg)
+
 
     def __init__(self, tag='div', attr={}, content=None, tag_type='double'):
         """
         __init__() method.
-
         Obviously.
         """
-        [...]
+        self.tag = tag
+        self.attr = attr
+        self.content = []
+        if content:
+            self.add_content(content)
+        elif content != None and not isinstance(content, Text):
+            raise Elem.ValidationError
+
+        self.tag_type = tag_type
 
     def __str__(self):
         """
@@ -36,10 +49,13 @@ class Elem:
         Make sure it renders everything (tag, attributes, embedded
         elements...).
         """
+        
         if self.tag_type == 'double':
-            [...]
+            # [...]
+            result = "<{0}{1}>{2}</{0}>".format(self.tag, self.__make_attr(), self.__make_content())
         elif self.tag_type == 'simple':
-            [...]
+            result = "<{0}{1}/>".format(self.tag, self.__make_attr())
+
         return result
 
     def __make_attr(self):
@@ -60,7 +76,8 @@ class Elem:
             return ''
         result = '\n'
         for elem in self.content:
-            result += [...]
+            elem = str(elem).replace('\n', '\n  ')
+            result += '  ' + elem + '\n'
         return result
 
     def add_content(self, content):
@@ -84,4 +101,11 @@ class Elem:
 
 
 if __name__ == '__main__':
-    [...]
+    elem = Elem(tag='html',
+            content=[Elem(tag='head',
+            content=Elem(tag='title',
+            content=Text('"Hello ground!"'))),
+            Elem(tag='body',
+            content=[Elem(tag='h1', content=Text('"Oh no, not again!"')),
+            Elem(tag='img', tag_type='simple', attr={'src': 'http://i.imgur.com/pfp3T.jpg'})])])
+    print(elem)

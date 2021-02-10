@@ -4,16 +4,19 @@ from fileinput import filename
 
 def read_settings_file():
     dict = {}
-    with open('settings.py') as f:
-        for element in f:
-            index = element.index("=")
-            id = element [0:index].strip()
-            if id in dict:
-                list = []
-                
-            else:
-                value = element[index+1:].strip()
-            dict[id] = value
+    try:
+        with open('settings.py') as f:
+            for element in f:
+                index = element.index("=")
+                id = element [0:index].strip()
+                if id in dict:
+                    list = []
+                    
+                else:
+                    value = element[index+1:].strip()
+                dict[id] = value
+    except (IOError, FileNotFoundError):
+        print("'settings.py' file is not accessible")
     return dict
 
 def read_template_file(dict, file_name):

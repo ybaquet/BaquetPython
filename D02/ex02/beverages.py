@@ -1,6 +1,7 @@
 class Hotbeverage:
+    description ="Just some hot water in a cup."
 
-    def _init__(self, price=0.30, name="hot beverage", description="Just some hot water in a cup."):
+    def __init__(self, price = 0.30, name = "hot beverage"):
         self.price = price
         self.name = name
         
@@ -11,25 +12,42 @@ class Hotbeverage:
         return str
 
 class Coffee(Hotbeverage):
+    description = "Just some hot water in a cup."
+    
     def __init__(self):
-        Hotbeverage.__init__(self, 0.40, "coffee", "A coffee, to stay awake.")
+        Hotbeverage.__init__(self, 0.40, "coffee")
 
 class Tea(Hotbeverage):
+    description = "Just some hot water in a cup."
+    
     def __init__(self):
-        super.__init__(self, 0.30, "tee", "Just some hot water in a cup.")
+        Hotbeverage.__init__(self, 0.30, "tea")
 
 class Chocolate(Hotbeverage):
+    description = "Chocolate, sweet chocolate..."
+    
     def __init__(self):
-        super.__init__(self, 0.50, "chocolate", "Chocolate, sweet chocolate...")
+        Hotbeverage.__init__(self, 0.50, "chocolate")
 
 class Capuccino(Hotbeverage):
+    description = "Un po' di Italia nella sua tazza!"
+    
     def __init__(self):
-        super.__init__(self, 0.45, "capuccino", "Un po’ di Italia nella sua tazza!")
+        Hotbeverage.__init__(self, 0.45, "capuccino")
         
 if __name__ == "__main__":
     hotbeverage = Hotbeverage()
-    coffe = Coffee()
+    coffee = Coffee()
     tea = Tea()
     chocolate = Chocolate()
-    capuccino = Cappucino()
+    capuccino = Capuccino()
     print(hotbeverage)
+    print('-----------------------------')
+    print(coffee)
+    print('-----------------------------')
+    print(tea)
+    print('-----------------------------')
+    print(chocolate)
+    print('-----------------------------')
+    print(capuccino)
+    print('-----------------------------')
