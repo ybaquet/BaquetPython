@@ -1,11 +1,11 @@
 python3.8 -m pip --version
 CURRENT=`pwd`
-LOCAL_DIR=/Users/yde-mont/Desktop/ECLIPSE/workspace/PYTHON/42Python/D03/ex01/rendu/local_dir
-if [ -e ${LOCAL_DIR}]
+LOCAL_DIR=./rendu/local_dir
+if [ -z ${LOCAL_DIR} ]
 then
 	rm -rf ${LOCAL_DIR}
 fi
-mkdir ${LOCAL_DIR}
+mkdir -p ${LOCAL_DIR}
 cd ${LOCAL_DIR}
-python3.8 -m pip install git+https://github.com/jaraco/path --target=. > ${LOCAL_DIR}/install_path.log
+python3.8 -m pip install git+https://github.com/jaraco/path --target=. > ./install_path.log
 cd ${CURRENT}

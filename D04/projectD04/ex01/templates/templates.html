@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<p>
+Héritage de gabarits¶
+La partie la plus puissante, mais aussi la plus complexe, du moteur de gabarits de Django est l’héritage des gabarits. Cet héritage permet de construire un gabarit « squelette » de base contenant tous les éléments communs de votre site et de définir des blocs que les gabarits enfants peuvent surcharger.
+
+Examinons l’héritage des gabarits en commençant par un exemple :
+</p>
+
+<p>
+{xmp}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>{% block title %}My amazing site{% endblock %}</title>
+</head>
+<p>
+<body>
+    <div id="sidebar">
+        {% block sidebar %}
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog/">Blog</a></li>
+        </ul>
+        {% endblock %}
+    </div>
+
+    <div id="content">
+        <b>{</b>% block content %\}\{% endblock %<b>}</b>
+    </div>
+</body>
+</html>
+</p>
+{/xmp}
+</p>
+Ce gabarit que nous appellerons base.html définit un squelette de document HTML qui pourrait être employé pour une page sur deux colonnes. C’est le travail des gabarits « enfants » de remplir les blocs vides avec du contenu.
+
+Dans cet exemple, la balise block définit trois blocs que les gabarits enfants peuvent remplir. La balise block ne fait que signaler au moteur de gabarits qu’un gabarit enfant peut surcharger ces portions du gabarit.
+
+Un gabarit enfant pourrait ressembler à ceci :
+{% endblock %}
+
